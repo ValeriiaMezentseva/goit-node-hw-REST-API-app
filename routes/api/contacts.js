@@ -9,14 +9,14 @@ const router = express.Router()
 
 router.get('/', authenticate, ctrlWrapper(ctrl.getAll)); 
 
-router.get('/:contactId', isValidId, ctrlWrapper(ctrl.getById)); 
+router.get('/:contactId', authenticate, isValidId, ctrlWrapper(ctrl.getById)); 
 
 router.post('/', authenticate, validation(addSchema), ctrlWrapper(ctrl.add)); 
 
-router.put('/:contactId', isValidId, validation(updateSchema), ctrlWrapper(ctrl.updateById)); 
+router.put('/:contactId', authenticate, isValidId, validation(updateSchema), ctrlWrapper(ctrl.updateById)); 
 
-router.patch('/:contactId/favorite', isValidId, validation(updateFavoriteSchema), ctrlWrapper(ctrl.updateFavorite)); 
+router.patch('/:contactId/favorite', authenticate, isValidId, validation(updateFavoriteSchema), ctrlWrapper(ctrl.updateFavorite)); 
 
-router.delete('/:contactId', isValidId, ctrlWrapper(ctrl.removeById)); 
+router.delete('/:contactId', authenticate, isValidId, ctrlWrapper(ctrl.removeById)); 
 
 module.exports = router; 

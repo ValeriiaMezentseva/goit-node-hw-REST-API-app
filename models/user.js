@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 const Joi = require('joi');
 const { errorHandler } = require("../middlewares"); 
 
-const userSchema = Schema({
+const userSchema = new Schema({
     password: {
         type: String,
         required: [true, 'Set password for user'],
@@ -18,11 +18,12 @@ const userSchema = Schema({
         default: "starter"
     },
     token: {
-        type: String, 
-        default: ""
+        type: String,
+        default: null
     },
 },
-    { versionKey: false, timestamps: true });
+    { versionKey: false, timestamps: true }
+); 
 
 
 userSchema.post("save", errorHandler); 
