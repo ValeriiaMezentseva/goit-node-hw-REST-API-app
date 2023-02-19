@@ -9,6 +9,8 @@ const router = express.Router()
 
 router.get('/', authenticate, ctrlWrapper(ctrl.getAll)); 
 
+router.get('/', authenticate, ctrlWrapper(ctrl.getByFavorite)); 
+
 router.get('/:contactId', authenticate, isValidId, ctrlWrapper(ctrl.getById)); 
 
 router.post('/', authenticate, validation(addSchema), ctrlWrapper(ctrl.add)); 

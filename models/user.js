@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose"); 
 const Joi = require('joi');
-const { errorHandler } = require("../middlewares"); 
+const errorHandler = require("../helpers/errorValidation"); 
 
 const userSchema = new Schema({
     password: {
@@ -36,11 +36,16 @@ const authSchema = Joi.object({
     token: Joi.string(),
 }); 
 
+const updateSubscriptionSchema = Joi.object({
+  subscription: Joi.string().valid("starter", "pro", "business").required(),
+}); 
+
 
 
 const User = model("user", userSchema); 
 
 module.exports = {
     User,
-    authSchema
+    authSchema,
+    updateSubscriptionSchema
 }
