@@ -11,5 +11,5 @@ module.exports = {
     add, 
     updateById,
     removeById, 
-    updateFavorite, 
+    updateFavorite,
 };
