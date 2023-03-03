@@ -5,6 +5,7 @@ const { updateFavoriteSchema } = require("./contact");
 const { User } = require("./user"); 
 const { authSchema } = require("./user");
 const { updateSubscriptionSchema } = require("./user"); 
+const { emailSchema } = require('./user'); 
 
 module.exports = {
     Contact, 
@@ -13,5 +14,6 @@ module.exports = {
     updateSchema, 
     updateFavoriteSchema,
     authSchema, 
-    updateSubscriptionSchema
+    updateSubscriptionSchema, 
+    emailSchema,
 }; 
