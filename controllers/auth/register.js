@@ -2,8 +2,8 @@ const { User } = require("../../models");
 const { Conflict } = require("http-errors");
 const bcrypt = require('bcryptjs'); 
 const gravatar = require('gravatar'); 
-const { v4: uuidv4 } = require('uuid');
-const sendEmail = require('../../helpers/sendEmail'); 
+// const { v4: uuidv4 } = require('uuid');
+// const sendEmail = require('../../helpers/sendEmail'); 
 
 
 const register = async (req, res) => {
@@ -13,18 +13,18 @@ const register = async (req, res) => {
     if (user) {
         throw new Conflict(`User with this email: ${email} already exists`);
     }
-    const verificationToken = uuidv4(); 
+    // const verificationToken = uuidv4(); 
     const avatarURL = gravatar.url(email); 
     const hashPassword = bcrypt.hashSync(password, 10);
-    const newUser = await User.create({ ...body, password: hashPassword, avatarURL, verificationToken });
+    const newUser = await User.create({ ...body, password: hashPassword, avatarURL});
     
-    const mail = {
-        to: email,
-        subject: "Email verification", 
-        html: `<a target="_blank" href="http://localhost:3000/api/users/verify/${verificationToken}"> Verify your email </a>`
-    }; 
+    // const mail = {
+    //     to: email,
+    //     subject: "Email verification", 
+    //     html: `<a target="_blank" href="http://localhost:3000/api/users/verify/${verificationToken}"> Verify your email </a>`
+    // }; 
 
-    await sendEmail(mail); 
+    // await sendEmail(mail); 
 
     res.status(201).json({
         status: "success",
@@ -32,9 +32,10 @@ const register = async (req, res) => {
             email: newUser.email,
             subscription: newUser.subscription,
             avatarURL, 
-            verificationToken
         },
     });
 };
 
 module.exports = register; 
+
+
