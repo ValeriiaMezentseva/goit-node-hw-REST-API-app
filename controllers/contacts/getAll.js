@@ -23,7 +23,7 @@ const getAll = async (req, res) => {
     status: 'success', 
     code: 200, 
     data: {
-      result: contacts
+       result: contacts
     }, 
   });
 }; 

@@ -33,6 +33,7 @@ const login = async (req, res) => {
         code: 200,
         token,
         user: {
+            name: user.name,
             email: user.email,
             subscription: user.subscription,
         },
