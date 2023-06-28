@@ -7,6 +7,10 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'Set password for user'],
     },
+    name: {
+        type: String, 
+        required: [true, 'Set name for user'],
+    },
     email: {
         type: String,
         required: [true, 'Email is required'],
@@ -43,6 +47,7 @@ userSchema.post("save", errorHandler);
 
 
 const authSchema = Joi.object({
+    name: Joi.string().min(1).max(30).required(),
     password: Joi.string().min(4).max(30).required(),
     email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required(),
     subscription: Joi.string(),
