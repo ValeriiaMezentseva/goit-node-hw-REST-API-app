@@ -17,10 +17,7 @@ const register = async (req, res) => {
         throw new Conflict(`User with this email: ${email} already exists`);
     }
     // const verificationToken = uuidv4(); 
-    // const avatarURL = gravatar.url(email);
-
-    const defaultAvatarURL = `https://api.adorable.io/avatars/200/${encodeURIComponent(email)}.png`;
-    const avatarURL = gravatar.url(email, { default: defaultAvatarURL });
+    const avatarURL = gravatar.url(email);
 
 
     const hashPassword = bcrypt.hashSync(password, 10);
